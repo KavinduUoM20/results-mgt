@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Result Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Architects+Daughter&family=Cairo:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
+
+</head>
+
+<body data-spy="scroll" data-target="#faq-menu" data-offset="150">
+    <!--============= ScrollToTop Section Starts Here =============-->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!--a href="#0" class="scrollToTop"><i class="fas fa-angle-up"></i></a>
+    <div class="overlay"></div-->
+    <!--============= ScrollToTop Section Ends Here =============-->
+
+    <!--============= Header Section Starts Here =============-->
+    <header class="header-section inner-header">
+        <div class="container"style="text-align: center;">
+            <h2 >Examination Results</h2><h3>Central College Kekirawa</h3>
+            <!--div class="header-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="./assets/images/logo/logo.png" alt="logo">
+                    </a>
+                </div>  
+            </div-->
+        </div>
+    </header>
+
+    <!--============= Header Section Ends Here =============-->
+
+    <!--============= Header Section Ends Here =============-->
+    <section class="page-header single-header blog-single-header">
+    </section>
+    <!--============= Header Section Ends Here =============-->
+
+
+
+    <!--============= Blog Section Starts Here =============-->
+    <section class="blog-single-section padding-bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <article>
+                        <div class="post-details">
+                            <div class="post-inner">
+                                <div class="post-header">
+                                    <h4 style="text-align: center;padding-bottom: 10px;color: #C0392B;">Select your exam, Then enter your index number to view your result. </h4>
+                                    
+                                    <!--div class="meta-post">
+                                        <a href="#0" class="read">26<SUP>th</SUP> September 2020 </a>
+                                    </div>
+                                    <h3 class="title">
+                                        G.C.E (O/L) EXAMINATION 2020
+                                    </h3-->
+                                    <div class="col-12" id="resultgg">
+                                        <div class="row" id="resinner">
+                                            <div class="col-lg-6">
+                                                <!--Exam Name-->
+                                                <label for="exampleFormControlSelect1"
+                                                    style="color: white;">Select Your Exam</label>
+                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                    <option>2<sup>nd</sup> Term Test 2020</option>
+                                                </select>
+                                            </div>
+                                            <!--Exam Name Finished-->
+                                            <div class="col-lg-6">
+                                                <!--Index number-->
+                                                <label for="inlineFormInputGroup" style="color: white;">Enter Your Index
+                                                    No</label>
+                                                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                                <div class="input-group md-1">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">Index No</div>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="inlineFormInputGroup"
+                                                        placeholder="i.e. 123456">
+                                                </div>
+                                            </div>
+                                            <!--Index Number Finished-->
+                                        </div>
+                                        <div class="row" style="padding-top:0px;" id="resinner">
+                                            <div class="SetOk" style="margin: auto;">
+                                                <div type="reset" class="btn" onclick="reset()" class="resetbtn"
+                                                    style="color: #ffffffea; font-size: 18px;width: 200px;padding: 10px;margin: 10px 13px 0px;background:#94928F;">
+                                                    Reset</div>
+
+                                                <div class="btn" onclick="load()"
+                                                    style="font-size: 18px;width: 200px;padding: 10px;margin: 10px 13px 0px;background: linear-gradient(to bottom right,#FE9B32  ,  #FEDF32);">
+                                                    Submit</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--result fetching-->
+                                    <div class="col-12" id="resultsfetched" style="background:rgba(255, 255, 255, 0.0);">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footpanel">
+            <center><img src="assets/logo2.png" style="width: 35px;height: auto;justify-content: center;">
+        <p style="font-size: 12px; text-align: center;bottom: 5px;padding: 10px;color: #424242;">Powered by <a href="http://otomate.lk/"
+                target="_blank" style="color: #706f6f">OTOMATE.LK</a></p>
+                
+        </center>
+        </div>
+    </footer>
+    <script>
+        function load() {
+            document.getElementById("resultsfetched").style.background = "#fff";
+            document.getElementById("resultsfetched").innerHTML = "Loading ...";
+            var id = document.getElementById("inlineFormInputGroup").value;
+            //console.log(id);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (this.responseText != "This index number is not valid.") {
+                        document.getElementById("resultsfetched").style.background = " #EAE7E6 ";
+                    } else {
+                        document.getElementById("resultsfetched").style.background = "#fff";
+                    }
+                    document.getElementById("resultsfetched").innerHTML =
+                        this.responseText;
+                }
+            };
+            xhttp.open("GET", "read.php?id=" + id, true);
+            xhttp.send();
+        }
+        function reset() {
+            document.getElementById("resultsfetched").style.background = "#fff";
+            document.getElementById("resultsfetched").innerHTML = "";
+        }
+    </script>
+    <!--============= Blog Section Ends Here =============-->
+
+
+    <!--============= Footer Section Starts Here =============-->
+    <!--footer class="footer-section bg_img" data-background="./assets/images/footer/footer-bg.jpg">
+                            <div class="container">
+                                <div class="footer-top padding-top padding-bottom">
+                                    <div class="logo">
+                                        <a href="#0">
+                                            <img src="./assets/images/logo/footer-logo.png" alt="logo">
+                                        </a>
+                                    </div>
+                                    <ul class="social-icons">
+                                        <li>
+                                            <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#0" class="active"><i class="fab fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#0"><i class="fab fa-pinterest-p"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#0"><i class="fab fa-google-plus-g"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#0"><i class="fab fa-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="footer-bottom">
+                                    <ul class="footer-link">
+                                        <li>
+                                            <a href="#0">About</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0">FAQs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0">Contact</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0">Terms of Service</a>
+                                        </li>
+                                        <li>
+                                            <a href="#0">Privacy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="copyright">
+                                    <p>
+                                        Copyright © 2020.All Rights Reserved By <a href="#0">Mosto</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </footer-->
+    <!--============= Footer Section Ends Here =============-->
+
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <script src="./assets/js/modernizr-3.6.0.min.js"></script>
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/magnific-popup.min.js"></script>
+    <script src="./assets/js/jquery-ui.min.js"></script>
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/waypoints.js"></script>
+    <script src="./assets/js/nice-select.js"></script>
+    <script src="./assets/js/owl.min.js"></script>
+    <script src="./assets/js/counterup.min.js"></script>
+    <script src="./assets/js/paroller.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+
+</body>
+
+</html>
